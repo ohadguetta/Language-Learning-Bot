@@ -53,7 +53,6 @@ async def button_click(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     # Handle button clicks here
     data = json.loads(query.data)
-<<<<<<< HEAD
     chosen_language = data["language"]
     # DONE: subscribe user to word of the day in firebase firestore
     # TODO: send the user a word of the day every day
@@ -63,15 +62,6 @@ async def button_click(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await query.edit_message_text(
             text=f"You subscribed successfully to the {chosen_language} language!"
         )
-=======
-    chosen_language = data['language']
-    #TODO: subscribe user to word of the day in firebase firestore
-    #TODO: send the user a word of the day every day
-    # isSuccess = wordOfTheDay.subscribe_user(update.effective_chat.id,chosen_language)
-    isSuccess = True
-    if isSuccess:
-        await query.edit_message_text(text=f"You subscribed successfully to the {chosen_language} language!")
->>>>>>> dc0ce2ae71ea554aa400b4b5e4e80f6e730e3165
     else:
         await query.edit_message_text(text=f"There was an error in the server!")
 
