@@ -1,3 +1,4 @@
 firebase-admin
+translate
 python-telegram-bot
 python-telegram-bot[job-queue]
