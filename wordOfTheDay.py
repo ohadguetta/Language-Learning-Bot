@@ -16,6 +16,7 @@ logging.basicConfig(  # if things not working properly
 )
 
 def subscribe_user(user_id,language):
+<<<<<<< HEAD
     try:
         user_ref = db.collection('users').document(str(user_id))
         # print(user_ref.get().to_dict())
@@ -28,6 +29,11 @@ def subscribe_user(user_id,language):
         logging.warning('Server has returned an error',e)
         return False
 
+=======
+    user_ref = db.collection('users').document(str(user_id))
+    user_ref.set({'subscriptions': firestore.ArrayUnion([language]) }) #TODO: check if user already subscribed before addition of language
+    
+>>>>>>> dc0ce2ae71ea554aa400b4b5e4e80f6e730e3165
 
 
 # def send_word_of_the_day():
