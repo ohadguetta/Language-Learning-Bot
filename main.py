@@ -3,6 +3,7 @@ import logging
 # import re
 # import datetime
 import json
+import wordOfTheDay
 
 from telegram import Update, InlineKeyboardMarkup, InlineKeyboardButton
 from telegram.constants import ParseMode
@@ -54,7 +55,12 @@ async def button_click(update: Update, context: ContextTypes.DEFAULT_TYPE):
     chosen_language = data['language']
     #TODO: subscribe user to word of the day in firebase firestore
     #TODO: send the user a word of the day every day
-    await query.edit_message_text(text=f"You Clicked {chosen_language}")
+    # isSuccess = wordOfTheDay.subscribe_user(update.effective_chat.id,chosen_language)
+    isSuccess = True
+    if isSuccess:
+        await query.edit_message_text(text=f"You subscribed successfully to the {chosen_language} language!")
+    else:
+        await query.edit_message_text(text=f"There was an error in the server!")
 
 
 

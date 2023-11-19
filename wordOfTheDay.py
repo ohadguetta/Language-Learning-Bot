@@ -13,6 +13,7 @@ db = firestore.client()
 def subscribe_user(user_id,language):
     user_ref = db.collection('users').document(str(user_id))
     user_ref.set({'subscriptions': firestore.ArrayUnion([language]) }) #TODO: check if user already subscribed before addition of language
+    
 
 
 # def send_word_of_the_day():
