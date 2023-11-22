@@ -78,7 +78,7 @@ async def send_wotd(update: Update,context: ContextTypes.DEFAULT_TYPE): #Sends w
             try:
                 await context.bot.send_message(
                 chat_id= user['chat_id']
-                ,text=f'Translation to <b> {wotdArr[language]["word"]} </b> in {language} is: <b> {wotdArr[language]["translation"]} </b>' #TODO: add word of the day
+                ,text=f'Translation to <b>{wotdArr[language]["word"]}</b> in {language} is: <b>{wotdArr[language]["translation"]}</b>' #DONE: add word of the day
                 # reply_markup= #TODO: maybe add a list of known words to user
                 ,parse_mode=ParseMode.HTML
                 )
@@ -91,6 +91,11 @@ async def pull_subscriptions(update: Update, context: ContextTypes.DEFAULT_TYPE)
         chat_id=update.effective_chat.id,
         text=result, 
     )
+
+
+
+
+
 
 
 if __name__ == "__main__":

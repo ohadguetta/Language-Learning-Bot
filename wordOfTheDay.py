@@ -1,9 +1,9 @@
 import logging
 import firebase_admin
 from firebase_admin import credentials, firestore,exceptions
-# from translate import Translator
-# from telegram import Update, ReplyKeyboardMarkup, ReplyKeyboardRemove
-# from telegram.ext import Updater, CommandHandler, CallbackContext, MessageHandler, Filters
+
+import random
+import json
 
 
 # Replace with your Firebase credentials JSON file
@@ -30,24 +30,6 @@ def subscribe_user(user_id,language):
 
 
 
-# def send_word_of_the_day():
-#     # Fetch the word of the day from your source
-#     word_of_the_day = 'YourWordOfTheDay'
-
-#     # Send the word of the day to the subscribed users
-#     db = firestore.client()
-#     subscribed_users_ref = db.collection('subscribed_users').where('subscribed', '==', True).stream()
-
-#     # bot = Updater(TELEGRAM_BOT_TOKEN).bot
-
-#     for user in subscribed_users_ref:
-#         user_id = user.id
-#         try:
-#             bot.send_message(chat_id=user_id, text=f"Word of the Day: {word_of_the_day}")
-#         except Exception as e:
-#             print(f"Error sending message to user {user_id}: {e}")
-
-
 def pull_subscriptions():
     subscriptions_ref = db.collection('users').where('subscriptions', '!=', []).stream()
     subscribed_users = []
@@ -60,11 +42,8 @@ def pull_subscriptions():
     return subscribed_users
 
 def getRandomWord(language):
-    #TODO: get random word and return its translation to the languagea and the word itself
-    # translator= Translator(to_lang="eng")
-    # translation = translator.translate('לקחת')
-    if language == 'Hebrew':
-        # return {'word':{translation},'translation':'לקחת'}
-        return {'word':'Take','translation':'לקחת'}
-    elif language =='Spanish':
-        return {'word':'Take','translation':'llevar'}
+    #DONE: get random word and return its translation to the languagea and the word itself
+    with open(f'{language.lower()}Words.json', 'r', encoding='utf-8') as file:
+        data = json.load(file)
+    random_entry = random.choice(data)
+    return random_entry
